@@ -1,0 +1,67 @@
+<div hidden="" id="co">
+<div class="steps"><button data-go="c1">① ข้อมูลกิจการ</button><button data-go="cout" id="sb2c">② ดูผลภาษี</button><button data-go="c3">③ ตารางและบทเรียน</button></div>
+<div class="card" id="c1">
+<h2>🏢 ข้อมูลกิจการทั้งรอบบัญชี</h2>
+<div class="tip">💡 บริษัทและห้างหุ้นส่วนจดทะเบียนเสียภาษีจาก "กำไรสุทธิ" ไม่ใช่จากรายได้</div>
+<label>ประเภทกิจการ</label>
+<select class="cx" id="c_ent"><option value="co">บริษัทจำกัด / บริษัทมหาชน</option><option value="lp">ห้างหุ้นส่วนจดทะเบียน (หจก. / ห้างหุ้นส่วนสามัญนิติบุคคล)</option><option value="gp">ห้างหุ้นส่วนสามัญไม่จดทะเบียน / คณะบุคคล</option></select>
+<div class="h">บริษัทและห้างหุ้นส่วนจดทะเบียนเสียภาษีนิติบุคคลเหมือนกัน · ห้างหุ้นส่วนสามัญที่ไม่จดทะเบียนและคณะบุคคลเสียภาษีแบบบุคคลธรรมดาตามขั้นบันได</div>
+<label>รายได้รวม (บาท)</label><input class="cx" id="c_rev" inputmode="decimal" type="number" value="5000000"/>
+<label>ค่าใช้จ่ายทั้งหมดตามบัญชี</label><input class="cx" id="c_exp" inputmode="decimal" type="number" value="4000000"/>
+<label>บวกกลับ: ค่าใช้จ่ายต้องห้ามทางภาษี</label><input class="cx" id="c_add" inputmode="decimal" type="number" value="0"/>
+<div class="h">เช่น ค่ารับรองส่วนเกิน เบี้ยปรับ เงินเพิ่ม ภาษีเงินได้นิติบุคคล ค่าใช้จ่ายส่วนตัว</div>
+<label>หัก: รายการยกเว้น/หักเพิ่มพิเศษ</label><input class="cx" id="c_sub" inputmode="decimal" type="number" value="0"/>
+<div class="h">เช่น เงินปันผลที่ได้รับยกเว้น ส่วนที่หักได้เพิ่ม (เช่น 2 เท่า) ตามมาตรการรัฐ</div>
+<label>ขาดทุนสะสมยกมา (ไม่เกิน 5 รอบบัญชี)</label><input class="cx" id="c_loss" inputmode="decimal" type="number" value="0"/>
+<div class="row" id="c_smebox">
+<div><label>ทุนชำระแล้ว ณ สิ้นรอบ</label><input class="cx" id="c_cap" inputmode="decimal" type="number" value="1000000"/></div>
+<div><label>อัตราภาษี</label><select class="cx" id="c_mode"><option value="auto">อัตโนมัติ (ตรวจสิทธิ์ SME)</option><option value="sme">บังคับใช้ SME</option><option value="std">บังคับใช้อัตราปกติ</option></select></div>
+</div>
+<div hidden="" id="c_gpbox"><label>ค่าลดหย่อนของห้างหุ้นส่วน/คณะบุคคล</label><input class="cx" id="c_allow" inputmode="decimal" type="number" value="60000"/><div class="h">ค่าเริ่มต้น 60,000 บาท (ปรับได้ ตรวจสอบกับกรมสรรพากร) · ขั้นบันไดแก้ได้ที่แท็บบุคคลธรรมดา หัวข้อ 5</div></div>
+<div class="row">
+<div><label>ภาษีที่ถูกหัก ณ ที่จ่าย</label><input class="cx" id="c_wht" inputmode="decimal" type="number" value="0"/></div>
+<div><label>ภาษีครึ่งปีที่จ่ายแล้ว (ภ.ง.ด.51)</label><input class="cx" id="c_half" inputmode="decimal" type="number" value="0"/></div>
+</div>
+<details style="margin-top:12px"><summary>ปรับอัตราและเงื่อนไข</summary>
+<div class="row">
+<div><label>อัตราปกติ (%)</label><input class="cx" id="c_std" inputmode="decimal" type="number" value="20"/></div>
+<div><label>SME: อัตราช่วงกลาง (%)</label><input class="cx" id="c_r2" inputmode="decimal" type="number" value="15"/></div>
+<div><label>SME: ยกเว้นกำไรถึง</label><input class="cx" id="c_t1" inputmode="decimal" type="number" value="300000"/></div>
+<div><label>SME: อัตรากลางถึง</label><input class="cx" id="c_t2" inputmode="decimal" type="number" value="3000000"/></div>
+<div><label>SME: ทุนชำระแล้วไม่เกิน</label><input class="cx" id="c_capmax" inputmode="decimal" type="number" value="5000000"/></div>
+<div><label>SME: รายได้ไม่เกิน</label><input class="cx" id="c_revmax" inputmode="decimal" type="number" value="30000000"/></div>
+</div></details>
+<button class="nx" data-go="cout">ดูผลภาษี ② ›</button>
+</div>
+<div class="card res" id="cout"></div>
+<div class="card"><input class="st" id="lb2" maxlength="60" placeholder="ชื่อรายการ (ไม่บังคับ) เช่น งบปี 2569"/><button class="nx" id="sv2">💾 บันทึกผลนี้</button></div>
+<button class="nx" data-go="c3">ตารางและบทเรียน ③ ›</button> <button class="nx gh" data-go="c1">↑ กลับไปแก้ข้อมูล</button>
+<div class="card" id="c3"><h2>ภาษีตามอัตราที่ใช้</h2><div class="wrap"><table id="ctb"></table></div></div>
+<div class="card ex"><details open=""><summary>📖 บทเรียน: วิธีคำนวณ (บริษัท/ห้างหุ้นส่วน)</summary>
+<h3>ขั้นตอนการคำนวณ</h3>
+<ol>
+<li><b>กำไรตามบัญชี</b> = รายได้ − ค่าใช้จ่ายทั้งหมด</li>
+<li><b>ปรับเป็นกำไรทางภาษี</b> บวกกลับค่าใช้จ่ายที่กฎหมายภาษีไม่ให้หัก และหักรายการยกเว้นหรือหักเพิ่มพิเศษ</li>
+<li><b>หักขาดทุนสะสม</b> ยกมาใช้ได้ภายใน 5 รอบบัญชี และใช้ได้ไม่เกินกำไรของรอบนั้น</li>
+<li>ได้ <b>กำไรสุทธิทางภาษี</b> แล้วคูณตามอัตราของประเภทกิจการ</li>
+</ol>
+<h3>ประเภทกิจการ</h3>
+<ul>
+<li><b>บริษัทจำกัด/มหาชน</b> และ <b>ห้างหุ้นส่วนจดทะเบียน</b> เสียภาษีนิติบุคคลเหมือนกัน</li>
+<li><b>ห้างหุ้นส่วนสามัญไม่จดทะเบียน/คณะบุคคล</b> ถือเป็นหน่วยภาษีเสียแบบบุคคลธรรมดา ใช้ขั้นบันไดภาษีและหักลดหย่อนของห้าง แล้วเทียบกับวิธี 0.5% ของรายได้ (เมื่อรายได้ ≥ 120,000 บาท) โดยใช้ยอดที่สูงกว่า</li>
+</ul>
+<h3>อัตราภาษีนิติบุคคล</h3>
+<ul>
+<li><b>อัตราปกติ</b> 20% ของกำไรสุทธิ</li>
+<li><b>SME</b> (ทุนชำระแล้วไม่เกิน 5 ล้านบาท และรายได้ไม่เกิน 30 ล้านบาท) กำไรสุทธิ 0–300,000 ยกเว้น · 300,001–3,000,000 อัตรา 15% · ส่วนที่เกิน 3,000,000 อัตรา 20%</li>
+</ul>
+<p class="eg"><b>✏️ ตัวอย่าง SME</b> กำไรสุทธิ 2,000,000 บาท: 300,000 แรกยกเว้น ส่วนที่เหลือ 1,700,000 × 15% = <b>255,000 บาท</b> ถ้าไม่เข้าเกณฑ์ SME จะเป็น 2,000,000 × 20% = 400,000 บาท</p>
+<h3>การชำระและยื่นแบบ</h3>
+<ul>
+<li><b>ภ.ง.ด.51</b> ภาษีครึ่งปี ชำระจากประมาณการกำไรทั้งปี ช่อง "ภาษีครึ่งปีที่ควรชำระโดยประมาณ" คือครึ่งหนึ่งของภาษีที่คำนวณได้ในหน้านี้</li>
+<li><b>ภ.ง.ด.50</b> ภาษีประจำปี หลังหักภาษีหัก ณ ที่จ่ายและภาษีครึ่งปีที่ชำระไปแล้ว จะเหลือยอดที่ต้องจ่ายเพิ่มหรือขอคืน</li>
+</ul>
+<h3>ข้อควรรู้</h3>
+<p>เครื่องมือนี้ไม่ได้ตรวจรายละเอียดทางบัญชี เช่น ค่าเสื่อมราคา สำรองหนี้สูญ หรือสิทธิประโยชน์ BOI ควรให้นักบัญชีตรวจก่อนยื่นจริง ปรับอัตราและเงื่อนไขได้ในหัวข้อ "ปรับอัตราและเงื่อนไข"</p>
+</details></div>
+</div>

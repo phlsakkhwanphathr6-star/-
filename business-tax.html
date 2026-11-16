@@ -1,0 +1,74 @@
+<div id="pv">
+<div class="steps"><button class="on" data-go="s1">① กรอกรายได้</button><button data-go="s2">② เลือกลดหย่อน</button><button data-go="out" id="sb3">③ ดูผลและเรียนรู้</button></div>
+<div class="card" id="s1">
+<h2>📝 1. รายได้ต่อปี</h2>
+<div class="tip">💡 รายได้แบ่งเป็น 8 ประเภทตามมาตรา 40 แต่ละประเภทหักค่าใช้จ่ายไม่เท่ากัน</div>
+<div class="chips"><span class="h">ลองตัวอย่าง:</span><button class="ch" data-ex="0">👩‍💼 พนักงานใหม่</button><button class="ch" data-ex="1">👨‍👩‍👧 ครอบครัว</button><button class="ch" data-ex="2">🧑‍💻 ฟรีแลนซ์+ค่าเช่า</button></div>
+<div class="row">
+<div><label>เงินเดือน/เดือน (40(1))</label><input id="sal" inputmode="decimal" type="number" value="50000"/></div>
+<div><label>จำนวนเดือน</label><input id="mon" inputmode="numeric" type="number" value="12"/></div>
+</div>
+<label>โบนัส/ค่าคอมมิชชั่นต่อปี (40(1))</label><input id="bon" inputmode="decimal" type="number" value="0"/>
+<label>รับจ้างอิสระ ฟรีแลนซ์ (40(2))</label><input id="fre" inputmode="decimal" type="number" value="0"/>
+<div class="h" style="margin-top:12px">รายได้ประเภทอื่น: กรอกจำนวนเงิน ระบบหักค่าใช้จ่ายเหมาตามประเภท หรือใส่ค่าใช้จ่ายจริงแทนก็ได้</div>
+<div id="itypes"></div>
+<div class="h" style="margin-top:8px">40(1)+(2) หัก 50% รวมไม่เกิน 100,000 บาท (ปรับได้ในหัวข้อ 5) · ค่าเริ่มต้นของแต่ละประเภทแก้ไขได้ในช่องหักเหมา %</div>
+<label>ภาษีที่ถูกหัก ณ ที่จ่ายแล้ว (บาท)</label><input id="wht" inputmode="decimal" type="number" value="0"/>
+<button class="nx" data-go="s2">ถัดไป ② เลือกลดหย่อน ›</button>
+</div>
+<div class="card" id="s2">
+<h2>👨‍👩‍👧 2. ค่าลดหย่อนครอบครัว</h2>
+<div class="tip">💡 ค่าลดหย่อนคือเงินที่หักออกก่อนคิดภาษี ยิ่งหักมาก เงินได้สุทธิยิ่งต่ำ</div>
+<div class="row">
+<div><label>คู่สมรสไม่มีรายได้</label><select id="sp"><option value="0">ไม่มี</option><option value="1">มี</option></select></div>
+<div><label>บิดามารดา (คน)</label><select id="par"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+<div><label>บุตร (คน)</label><input id="ch" inputmode="numeric" min="0" type="number" value="0"/></div>
+<div><label>บุตรคนที่ 2+ เกิดปี 2561 ขึ้นไป</label><input id="ch2" inputmode="numeric" min="0" type="number" value="0"/></div>
+<div><label>ผู้พิการ/ทุพพลภาพที่เลี้ยงดู (คน)</label><input id="dis" inputmode="numeric" min="0" type="number" value="0"/></div>
+<div><label>ค่าฝากครรภ์/คลอดบุตร</label><input id="preg" inputmode="decimal" type="number" value="0"/></div>
+</div>
+</div>
+<div class="card">
+<h2>🛡️ 3. ประกัน กองทุน และสิทธิประโยชน์</h2>
+<div class="tip">💡 กองทุนเพื่อการเกษียณรวมกันหักได้ไม่เกิน 500,000 บาท</div>
+<div class="h">ใส่ยอดที่จ่ายจริงต่อปี (บาท) · ช่องว่างจะแสดงเพดานสูงสุด ระบบตัดตามเพดานให้อัตโนมัติ</div>
+<div id="flds"></div>
+</div>
+<div class="card">
+<h2>🎁 4. เงินบริจาค</h2>
+<div class="tip">💡 บริจาคเพื่อการศึกษา สาธารณสุข กีฬา นับเป็น 2 เท่า</div>
+<label>บริจาคทั่วไป</label><input id="dg" inputmode="decimal" type="number" value="0"/>
+<label>บริจาคการศึกษา/สาธารณสุข/กีฬา (นับ 2 เท่า)</label><input id="de" inputmode="decimal" type="number" value="0"/>
+<div class="h">รวมแล้วไม่เกิน 10% ของเงินได้หลังหักลดหย่อน</div>
+<button class="nx" data-go="out">ดูผลการคำนวณ ③ ›</button>
+</div>
+<div class="card"><details><summary>⚙️ 5. ปรับค่าลดหย่อน เพดาน และขั้นบันไดภาษี</summary><div class="h" style="margin:6px 0 10px">แก้ตัวเลขให้ตรงกับปีภาษีหรือสิทธิ์ของคุณได้ ผลลัพธ์อัปเดตทันที</div><div id="sets"></div><button id="rd" style="margin-top:12px">คืนค่าเริ่มต้น (เพดานและขั้นบันได)</button></details></div>
+<div class="card res" id="out"></div>
+<div class="card"><h2>📊 ภาพรวมเงินของคุณ</h2>
+<div class="vz"><div class="don" id="don"></div><div class="leg" id="dleg"></div></div>
+<div class="h" style="margin:12px 0 4px">ภาษีที่เสียในแต่ละขั้นบันได (บาท)</div><div id="bbars"></div>
+<input class="st" id="lb1" maxlength="60" placeholder="ชื่อรายการ (ไม่บังคับ) เช่น ภาษีปี 2569" style="margin-top:12px"/><button class="nx" id="sv1">💾 บันทึกผลนี้</button>
+<button class="nx gh" id="cp">📋 คัดลอกสรุปผล</button></div>
+<button class="nx gh" data-go="s1">↑ กลับไปแก้ตัวเลข</button>
+<div class="card"><h2>ภาษีตามขั้นบันได</h2><div class="wrap"><table id="tb"></table></div></div>
+<div class="card"><h2>ลดหย่อนที่ใช้ไปและที่ยังเหลือ</h2>
+<div class="h">คอลัมน์ขวาคือภาษีที่ประหยัดได้โดยประมาณ หากใช้สิทธิ์เพิ่มจนเต็มเพดาน</div>
+<div class="wrap"><table id="hd"></table></div></div>
+<button id="rs">รีเซ็ตค่าทั้งหมด</button>
+<div class="card ex"><details open=""><summary>📖 บทเรียน: วิธีคำนวณ (บุคคลธรรมดา)</summary>
+<h3>สูตรสั้น ๆ</h3>
+<p><b>รายได้ − ค่าใช้จ่าย − ค่าลดหย่อน = เงินได้สุทธิ</b> แล้วนำไปคิดภาษีตามขั้นบันได</p>
+<h3>ขั้นบันไดคิดยังไง</h3>
+<p>แต่ละช่วงของเงินได้สุทธิคิดภาษีตามอัตราของช่วงนั้นเท่านั้น ไม่ได้เอาอัตราสูงสุดคิดทั้งก้อน</p>
+<p class="eg"><b>✏️ ตัวอย่าง</b> เงินได้สุทธิ 600,000 บาท<br/>150,000 แรก ยกเว้น<br/>ถัดไป 150,000 × 5% = 7,500<br/>ถัดไป 200,000 × 10% = 20,000<br/>ส่วนที่เหลือ 100,000 × 15% = 15,000<br/>รวม <b>42,500 บาท</b></p>
+<h3>อ่านผลลัพธ์</h3>
+<ul>
+<li><b>อัตราที่แท้จริง</b> = ภาษี ÷ รายได้รวม</li>
+<li><b>อัตราขั้นสูงสุดที่ตก</b> = ลดหย่อนเพิ่ม 1 บาท ประหยัดภาษีได้ประมาณเท่านี้</li>
+<li><b>ประหยัดได้</b> (ในตาราง) = สิทธิ์ที่ยังเหลือ × อัตราขั้นสูงสุด เป็นค่าประมาณ</li>
+<li><b>ต้องจ่ายเพิ่ม/ขอคืน</b> = ภาษีทั้งปี − ภาษีที่ถูกหักไว้แล้ว</li>
+</ul>
+<p class="note">ถ้ามีรายได้ 40(2)–(8) รวมเกิน 120,000 บาท ต้องเทียบกับ 0.5% ของรายได้ด้วย แล้วจ่ายตามยอดที่สูงกว่า · อัตราค่าใช้จ่าย เพดาน และขั้นบันไดแก้ได้ในหัวข้อ 5 · ผลลัพธ์เป็นค่าประมาณ</p>
+</details></div>
+<div class="card" id="quiz"></div>
+</div>
